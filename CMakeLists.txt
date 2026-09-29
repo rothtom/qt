@@ -12,6 +12,7 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt6 REQUIRED COMPONENTS 
     Quick
     Qml
+    Widgets
 )
 
 qt_policy(SET QTP0001 NEW)

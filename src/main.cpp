@@ -1,16 +1,28 @@
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
+#include <QApplication>
+// #include <QGuiApplication>
+// #include <QQmlApplicationEngine>
+
+#include "UserInteractor.hpp"
+#include "Firefox.hpp"
+#include "InternetExplorer.hpp"
+
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
-    QQmlApplicationEngine engine;
+    userInteractor ui = userInteractor();
 
-    engine.loadFromModule("QtUI", "Main");
+    Firefox firefox = Firefox();
 
-    if (engine.rootObjects().isEmpty())
-        return -1;
+    internetExplorer ie = internetExplorer();
 
+
+    QObject::connect(&ui, &userInteractor::gotPhrase, &firefox, &Firefox::browse);
+    QObject::connect(&ui, &userInteractor::gotPhrase, &ie, &internetExplorer::request_browse);
+    QObject::connect(&ie, &internetExplorer::request_browse, &ie, &internetExplorer::browse);
+
+    ui.interact();
+    
     return app.exec();
 }

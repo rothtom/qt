@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 
+
 ApplicationWindow {
     visible: true
     width: 800
@@ -10,5 +11,10 @@ ApplicationWindow {
 
     Text {
         text: "Hello, QML!"
+    }
+    Container {
+        width: 100
+        height: 100
+        
     }
 }
