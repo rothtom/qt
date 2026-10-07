@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
     QObject::connect(&ui, &userInteractor::gotPhrase, &firefox, &Firefox::browse);
     QObject::connect(&ui, &userInteractor::gotPhrase, &ie, &internetExplorer::request_browse);
-    QObject::connect(&ie, &internetExplorer::request_browse, &ie, &internetExplorer::browse);
+    QObject::connect(&ie, &internetExplorer::browse_requested, &ie, &internetExplorer::browse);
 
     ui.interact();
     
